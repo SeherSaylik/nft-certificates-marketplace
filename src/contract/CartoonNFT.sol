@@ -1,17 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.21 <0.8.0;
 pragma abicoder v2;
+
+// import ERC721 iterface
 import "./ERC721.sol";
 
+// CartoonCharacters smart contract inherits ERC721 interface
 contract CartoonCharacters is ERC721 {
     // this contract's token collection name
     string public collectionName;
     // this contract's token symbol
     string public collectionNameSymbol;
-    // total number of cartoon characters minted
-    uint256 public cartoonNFTCounter;
+    // total number of crypto boys minted
+    uint256 public cartoonCharacterCounter;
 
-    // define cartoon character struct
+    // define crypto boy struct
     struct CartoonCharacter {
         uint256 tokenId;
         string tokenName;
@@ -24,7 +27,7 @@ contract CartoonCharacters is ERC721 {
         bool forSale;
     }
 
-    // map cartooncharacter's token id to cartoon character
+    // map cartoon's token id to crypto boy
     mapping(uint256 => CartoonCharacter) public allCartoonCharacters;
     // check if token name exists
     mapping(string => bool) public tokenNameExists;
@@ -34,12 +37,12 @@ contract CartoonCharacters is ERC721 {
     mapping(string => bool) public tokenURIExists;
 
     // initialize contract while deployment with contract's collection name and token
-    constructor() ERC721("Cartoon Characters Collection", "CC") {
+    constructor() ERC721("Crypto Boys Collection", "CB") {
         collectionName = name();
         collectionNameSymbol = symbol();
     }
 
-    // mint a new cartoon character
+    // mint a new crypto boy
     function mintCartoonCharacter(
         string memory _name,
         string memory _tokenURI,
@@ -49,9 +52,9 @@ contract CartoonCharacters is ERC721 {
         // check if thic fucntion caller is not an zero address account
         require(msg.sender != address(0));
         // increment counter
-        cartoonNFTCounter++;
+        cartoonCharacterCounter++;
         // check if a token exists with the above token id => incremented counter
-        require(!_exists(cartoonNFTCounter));
+        require(!_exists(cartoonCharacterCounter));
 
         // loop through the colors passed and check if each colors already exists or not
         for (uint256 i = 0; i < _colors.length; i++) {
@@ -63,9 +66,9 @@ contract CartoonCharacters is ERC721 {
         require(!tokenNameExists[_name]);
 
         // mint the token
-        _mint(msg.sender, cartoonNFTCounter);
+        _mint(msg.sender, cartoonCharacterCounter);
         // set token URI (bind token id with the passed in token URI)
-        _setTokenURI(cartoonNFTCounter, _tokenURI);
+        _setTokenURI(cartoonCharacterCounter, _tokenURI);
 
         // loop through the colors passed and make each of the colors as exists since the token is already minted
         for (uint256 i = 0; i < _colors.length; i++) {
@@ -76,9 +79,9 @@ contract CartoonCharacters is ERC721 {
         // make token name passed as exists
         tokenNameExists[_name] = true;
 
-        // creat a new cartoon character (struct) and pass in new values
-        CartoonCharactermemory newCartoonCharacter = CartoonCharacter(
-            cartoonNFTCounter,
+        // creat a new crypto boy (struct) and pass in new values
+        CartoonCharacter memory newCartoonCharacter = CartoonCharacter(
+            cartoonCharacterCounter,
             _name,
             _tokenURI,
             msg.sender,
@@ -88,8 +91,8 @@ contract CartoonCharacters is ERC721 {
             0,
             true
         );
-        // add the token id and it's cartoon character to all cartoon characters mapping
-        allCartoonCharacters[cartoonNFTCounter] = newCartoonCharacter;
+        // add the token id and it's crypto boy to all crypto boys mapping
+        allCartoonCharacters[cartoonCharacterCounter] = newCartoonCharacter;
     }
 
     // get owner of the token
@@ -142,7 +145,7 @@ contract CartoonCharacters is ERC721 {
         require(tokenOwner != address(0));
         // the one who wants to buy the token should not be the token's owner
         require(tokenOwner != msg.sender);
-        // get that token from all cartoon characters mapping and create a memory of it defined as (struct => CartoonCharacter)
+        // get that token from all crypto boys mapping and create a memory of it defined as (struct => CartoonCharacter)
         CartoonCharacter memory cartoon = allCartoonCharacters[_tokenId];
         // price sent in to buy should be equal to or more than the token's price
         require(msg.value >= cartoon.price);
@@ -173,10 +176,8 @@ contract CartoonCharacters is ERC721 {
         address tokenOwner = ownerOf(_tokenId);
         // check that token's owner should be equal to the caller of the function
         require(tokenOwner == msg.sender);
-        // get that token from all cartoon characters mapping and create a memory of it defined as (struct => CartoonCharacter)
-        CartoonCharactermemory CartoonCharacter = allCartoonCharacters[
-            _tokenId
-        ];
+        // get that token from all crypto boys mapping and create a memory of it defined as (struct => CartoonCharacter)
+        CartoonCharacter memory cartoon = allCartoonCharacters[_tokenId];
         // update token's price with new price
         cartoon.price = _newPrice;
         // set and update that token in the mapping
@@ -193,10 +194,8 @@ contract CartoonCharacters is ERC721 {
         address tokenOwner = ownerOf(_tokenId);
         // check that token's owner should be equal to the caller of the function
         require(tokenOwner == msg.sender);
-        // get that token from all cartoon characters mapping and create a memory of it defined as (struct => CartoonCharacter)
-        CartoonCharactermemory CartoonCharacter = allCartoonCharacters[
-            _tokenId
-        ];
+        // get that token from all crypto boys mapping and create a memory of it defined as (struct => CartoonCharacter)
+        CartoonCharacter memory cartoon = allCartoonCharacters[_tokenId];
         // if token's forSale is false make it true and vice versa
         if (cartoon.forSale) {
             cartoon.forSale = false;
