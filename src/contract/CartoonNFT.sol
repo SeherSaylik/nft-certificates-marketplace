@@ -11,10 +11,10 @@ contract CartoonCharacters is ERC721 {
     string public collectionName;
     // this contract's token symbol
     string public collectionNameSymbol;
-    // total number of crypto boys minted
+    // total number of cartoon characters minted
     uint256 public cartoonCharacterCounter;
 
-    // define crypto boy struct
+    // define cartoon character struct
     struct CartoonCharacter {
         uint256 tokenId;
         string tokenName;
@@ -27,7 +27,7 @@ contract CartoonCharacters is ERC721 {
         bool forSale;
     }
 
-    // map cartoon's token id to crypto boy
+    // map cartoon's token id to cartoon character
     mapping(uint256 => CartoonCharacter) public allCartoonCharacters;
     // check if token name exists
     mapping(string => bool) public tokenNameExists;
@@ -42,7 +42,7 @@ contract CartoonCharacters is ERC721 {
         collectionNameSymbol = symbol();
     }
 
-    // mint a new crypto boy
+    // mint a new cartoon character
     function mintCartoonCharacter(
         string memory _name,
         string memory _tokenURI,
@@ -79,7 +79,7 @@ contract CartoonCharacters is ERC721 {
         // make token name passed as exists
         tokenNameExists[_name] = true;
 
-        // creat a new crypto boy (struct) and pass in new values
+        // creat a new cartoon character (struct) and pass in new values
         CartoonCharacter memory newCartoonCharacter = CartoonCharacter(
             cartoonCharacterCounter,
             _name,
@@ -91,7 +91,7 @@ contract CartoonCharacters is ERC721 {
             0,
             true
         );
-        // add the token id and it's crypto boy to all crypto boys mapping
+        // add the token id and it's cartoon character to all cartoon characters mapping
         allCartoonCharacters[cartoonCharacterCounter] = newCartoonCharacter;
     }
 
@@ -145,7 +145,7 @@ contract CartoonCharacters is ERC721 {
         require(tokenOwner != address(0));
         // the one who wants to buy the token should not be the token's owner
         require(tokenOwner != msg.sender);
-        // get that token from all crypto boys mapping and create a memory of it defined as (struct => CartoonCharacter)
+        // get that token from all cartoon characters mapping and create a memory of it defined as (struct => CartoonCharacter)
         CartoonCharacter memory cartoon = allCartoonCharacters[_tokenId];
         // price sent in to buy should be equal to or more than the token's price
         require(msg.value >= cartoon.price);
@@ -176,7 +176,7 @@ contract CartoonCharacters is ERC721 {
         address tokenOwner = ownerOf(_tokenId);
         // check that token's owner should be equal to the caller of the function
         require(tokenOwner == msg.sender);
-        // get that token from all crypto boys mapping and create a memory of it defined as (struct => CartoonCharacter)
+        // get that token from all cartoon characters mapping and create a memory of it defined as (struct => CartoonCharacter)
         CartoonCharacter memory cartoon = allCartoonCharacters[_tokenId];
         // update token's price with new price
         cartoon.price = _newPrice;
@@ -194,7 +194,7 @@ contract CartoonCharacters is ERC721 {
         address tokenOwner = ownerOf(_tokenId);
         // check that token's owner should be equal to the caller of the function
         require(tokenOwner == msg.sender);
-        // get that token from all crypto boys mapping and create a memory of it defined as (struct => CartoonCharacter)
+        // get that token from all cartoon characters mapping and create a memory of it defined as (struct => CartoonCharacter)
         CartoonCharacter memory cartoon = allCartoonCharacters[_tokenId];
         // if token's forSale is false make it true and vice versa
         if (cartoon.forSale) {

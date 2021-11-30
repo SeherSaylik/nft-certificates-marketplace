@@ -7,7 +7,7 @@ require("chai")
   .should();
 
 contract("Cartoon Characters", async (accounts) => {
-  let cartoonCharacters, result, cryptoBoyCount;
+  let cartoonCharacters, result, cartoonCharacterCount;
 
   before(async () => {
     cartoonCharacters = await CartoonCharacters.deployed();
@@ -35,8 +35,8 @@ contract("Cartoon Characters", async (accounts) => {
 
   describe("application features", async () => {
     it("allows users to mint ERC721 token", async () => {
-      cryptoBoyCount = await cartoonCharacters.cartoonCharacterCounter();
-      assert.equal(cryptoBoyCount.toNumber(), 0);
+      cartoonCharacterCount = await cartoonCharacters.cartoonCharacterCounter();
+      assert.equal(cartoonCharacterCount.toNumber(), 0);
 
       let tokenExists;
       tokenExists = await cartoonCharacters.getTokenExists(1, { from: accounts[0] });
@@ -88,8 +88,8 @@ contract("Cartoon Characters", async (accounts) => {
         { from: accounts[0] }
       );
 
-      cryptoBoyCount = await cartoonCharacters.cartoonCharacterCounter();
-      assert.equal(cryptoBoyCount.toNumber(), 1);
+      cartoonCharacterCount = await cartoonCharacters.cartoonCharacterCounter();
+      assert.equal(cartoonCharacterCount.toNumber(), 1);
 
       tokenExists = await cartoonCharacters.getTokenExists(1, { from: accounts[0] });
       assert.equal(tokenExists, true);
@@ -359,11 +359,11 @@ contract("Cartoon Characters", async (accounts) => {
       );
       assert.equal(oldTotalNumberOfTokensOwnedBySeller.toNumber(), 3);
 
-      let cryptoBoy;
-      cryptoBoy = await cartoonCharacters.allCartoonCharacter(1, {
+      let cartoonCharacter;
+      cartoonCharacter = await cartoonCharacters.allCartoonCharacter(1, {
         from: accounts[0],
       });
-      assert.equal(cryptoBoy.numberOfTransfers.toNumber(), 0);
+      assert.equal(cartoonCharacter.numberOfTransfers.toNumber(), 0);
 
       result = await cartoonCharacters.buyToken(1, {
         from: accounts[2],
@@ -383,10 +383,10 @@ contract("Cartoon Characters", async (accounts) => {
       );
       assert.equal(newTotalNumberOfTokensOwnedBySeller.toNumber(), 2);
 
-      cryptoBoy = await cartoonCharacters.allCartoonCharacter(1, {
+      cartoonCharacter = await cartoonCharacters.allCartoonCharacter(1, {
         from: accounts[0],
       });
-      assert.equal(cryptoBoy.numberOfTransfers.toNumber(), 1);
+      assert.equal(cartoonCharacter.numberOfTransfers.toNumber(), 1);
 
       let price;
       price = web3.utils.toWei("1", "Ether");
@@ -398,10 +398,10 @@ contract("Cartoon Characters", async (accounts) => {
         exepectedBalance.toString()
       );
 
-      cryptoBoy = await cartoonCharacters.allCartoonCharacter(1, {
+      cartoonCharacter = await cartoonCharacters.allCartoonCharacter(1, {
         from: accounts[0],
       });
-      assert.equal(cryptoBoy.currentOwner, accounts[2]);
+      assert.equal(cartoonCharacter.currentOwner, accounts[2]);
 
       await cartoonCharacters.buyToken(2, {
         from: 0x0000000000000000000000000000000000000000,
@@ -420,11 +420,11 @@ contract("Cartoon Characters", async (accounts) => {
     });
 
     it("allows users to change token price", async () => {
-      let cryptoBoyPrice;
-      cryptoBoyPrice = await cartoonCharacters.allCartoonCharacter(1, {
+      let cartoonCharacterPrice;
+      cartoonCharacterPrice = await cartoonCharacters.allCartoonCharacter(1, {
         from: accounts[0],
       });
-      assert.equal(web3.utils.fromWei(cryptoBoyPrice.price, "ether"), 1);
+      assert.equal(web3.utils.fromWei(cartoonCharacterPrice.price, "ether"), 1);
 
       result = await cartoonCharacters.changeTokenPrice(
         1,
@@ -434,10 +434,10 @@ contract("Cartoon Characters", async (accounts) => {
         }
       );
 
-      cryptoBoyPrice = await cartoonCharacters.allCartoonCharacter(1, {
+      cartoonCharacterPrice = await cartoonCharacters.allCartoonCharacter(1, {
         from: accounts[0],
       });
-      assert.equal(web3.utils.fromWei(cryptoBoyPrice.price, "ether"), 2);
+      assert.equal(web3.utils.fromWei(cartoonCharacterPrice.price, "ether"), 2);
 
       await cartoonCharacters.changeTokenPrice(1, web3.utils.toWei("3", "Ether"), {
         from: 0x0000000000000000000000000000000000000000,
