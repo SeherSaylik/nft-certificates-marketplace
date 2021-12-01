@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "../../bootstrap.min.css"
+
 
 const Queries = (props) => {
   const [tokenIdForOwner, setTokenIdForOwner] = useState("");

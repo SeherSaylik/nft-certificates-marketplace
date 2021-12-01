@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import "../../bootstrap.min.css"
+
 
 class CartoonCharacterNFTDetails extends Component {
   constructor(props) {

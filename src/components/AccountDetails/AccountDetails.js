@@ -1,4 +1,5 @@
 import React from "react";
+import "../../bootstrap.min.css"
 
 const AccountDetails = ({ accountAddress, accountBalance }) => {
   return (
@@ -7,7 +8,7 @@ const AccountDetails = ({ accountAddress, accountBalance }) => {
         <h1 className="display-5">CartoonCharacter NFT Marketplace</h1>
         <p className="lead">
           This is an NFT marketplace where you can mint ERC721 implemented{" "}
-          <i>Crypto Boy NFTs</i> and manage them.
+          <i>Cartoon Character NFTs</i> and manage them.
         </p>
         <hr className="my-4" />
         <p className="lead">Account address :</p>

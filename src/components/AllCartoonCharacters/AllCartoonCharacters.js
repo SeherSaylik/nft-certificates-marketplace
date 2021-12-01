@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import CartoonCharacterNFTImage from "../CartoonCharacterNFTImage/CartoonCharacterNFTImage";
 import CartoonCharacterNFTDetails from "../CartoonCharacterNFTDetails/CartoonCharacterNFTDetails";
 import Loading from "../Loading/Loading";
+import "../../bootstrap.min.css"
+
 
 const AllCartoonCharacters = ({
   cartoonCharacters,

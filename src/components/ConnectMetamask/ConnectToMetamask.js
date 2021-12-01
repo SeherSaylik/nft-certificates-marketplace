@@ -1,15 +1,17 @@
 import React from "react";
 import metamaskIcon from "./metamask.svg";
+import "../../bootstrap.min.css"
+
 
 const ConnectToMetamask = ({ connectToMetamask }) => {
   return (
     <div className="jumbotron">
       <h1 className="display-5">
-        CartoonCharacter NFT Marketplace
+        Cartoon Character NFT Marketplace
       </h1>
       <p className="lead">
         This is an NFT marketplace where you can mint your ERC721 implemented{" "}
-        <i>Crypto Boy NFTs</i> and manage them.
+        <i>Cartoon Character NFTs</i> and manage them.
       </p>
       <hr className="my-4" />
       <button

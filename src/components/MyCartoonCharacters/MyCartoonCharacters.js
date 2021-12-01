@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import CartoonCharacterNFTImage from "../CartoonCharacterNFTImage/CartoonCharacterNFTImage";
 import MyCartoonCharacterNFTDetails from "../MyCartoonCharacterNFTDetails/MyCartoonCharacterNFTDetails";
 import Loading from "../Loading/Loading";
+import "../../bootstrap.min.css"
 
 const MyCartoonCharacters = ({
   accountAddress,
@@ -19,10 +20,10 @@ const MyCartoonCharacters = ({
         setLoading(false);
       }
     }
-    const my_crypto_boys = cartoonCharacters.filter(
+    const my_cartoon_characters = cartoonCharacters.filter(
       (cartoon) => cartoon.currentOwner === accountAddress
     );
-    setMyCartoonCharacters(my_crypto_boys);
+    setMyCartoonCharacters(my_cartoon_characters);
   }, [cartoonCharacters]);
 
   return (

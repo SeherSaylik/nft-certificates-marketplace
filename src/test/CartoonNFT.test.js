@@ -1,6 +1,6 @@
 const { assert } = require("chai");
 
-const CartoonCharacters = artifacts.require("../contract/CartoonNFT.sol");
+const CartoonCharacters = artifacts.require("../contract/CartoonCharacters.sol");
 
 require("chai")
   .use(require("chai-as-promised"))

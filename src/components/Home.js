@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { HashRouter, Route } from "react-router-dom";
 import Web3 from "web3";
+import "./Home.css"
 import CartoonCharacters from "../abi/CartoonCharacters.json";
 
 import FormAndPreview from "../components/FormAndPreview/FormAndPreview";
@@ -55,7 +56,7 @@ class App extends Component {
         lastMintTime: localStorage.getItem(this.state.accountAddress),
       });
       this.state.lastMintTime === undefined || this.state.lastMintTime === null
-        ? (mintBtn.innerHTML = "Mint My Crypto Boy")
+        ? (mintBtn.innerHTML = "Mint My Cartoon Character")
         : this.checkIfCanMint(parseInt(this.state.lastMintTime));
     }
   };
@@ -69,7 +70,7 @@ class App extends Component {
       const diff = countDownTime - now;
       if (diff < 0) {
         mintBtn.removeAttribute("disabled");
-        mintBtn.innerHTML = "Mint My Crypto Boy";
+        mintBtn.innerHTML = "Mint My Cartoon Character";
         localStorage.removeItem(this.state.accountAddress);
         clearInterval(interval);
       } else {
@@ -96,6 +97,7 @@ class App extends Component {
   loadBlockchainData = async () => {
     const web3 = window.web3;
     const accounts = await web3.eth.getAccounts();
+    console.log("accoutns,", accounts)
     if (accounts.length === 0) {
       this.setState({ metamaskConnected: false });
     } else {
@@ -107,12 +109,15 @@ class App extends Component {
       this.setState({ accountBalance });
       this.setState({ loading: false });
       const networkId = await web3.eth.net.getId();
+      console.log("netID",networkId)
       const networkData = CartoonCharacters.networks[networkId];
-      if (networkData) {
+      console.log("carttoon abi", CartoonCharacters)
+      console.log("networkdata", networkData)
+      const contractAddres= "0xcE4367074AFf74517B01EA81C3D598F642407c35"
         this.setState({ loading: true });
         const cartoonCharactersContract = web3.eth.Contract(
           CartoonCharacters.abi,
-          networkData.address
+          contractAddres
         );
         this.setState({ cartoonCharactersContract });
         this.setState({ contractDetected: true });
@@ -139,9 +144,7 @@ class App extends Component {
         totalTokensOwnedByAccount = totalTokensOwnedByAccount.toNumber();
         this.setState({ totalTokensOwnedByAccount });
         this.setState({ loading: false });
-      } else {
-        this.setState({ contractDetected: false });
-      }
+   
     }
   };
 
@@ -214,7 +217,7 @@ class App extends Component {
       previousTokenId = previousTokenId.toNumber();
       const tokenId = previousTokenId + 1;
       const tokenObject = {
-        tokenName: "Crypto Boy",
+        tokenName: "Cartoon Character",
         tokenSymbol: "CB",
         tokenId: `${tokenId}`,
         name: name,

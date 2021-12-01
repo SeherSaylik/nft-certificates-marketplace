@@ -134,7 +134,6 @@ const CartoonCharacterNFTImage = ({ colors }) => {
 
   return (
     <div style={cartoon_card}>
-      <a> Certificate Title</a>
       <div style={head}>
         <div style={eyeLeft}>
           <div style={pupilLeft}></div>
