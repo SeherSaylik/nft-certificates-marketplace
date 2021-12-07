@@ -2,8 +2,8 @@
     "name": "cartoons",
     "version": "0.1.0",
     "description": "Crypto Boys NFT Marketplace",
-    "author": "devpavan04",
-    "homepage": "https://devpavan04.github.io/cartoons-nft-marketplace",
+    "author": "sehersaylik",
+    "homepage": "https://sehersaylik.github.io/cartoons-nft-marketplace",
     "dependencies": {
         "@openzeppelin/contracts": "^3.4.1",
         "babel-polyfill": "6.26.0",
