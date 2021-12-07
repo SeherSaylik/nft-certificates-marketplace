@@ -138,6 +138,8 @@ const CartoonCharacterNFTImage = ({ colors }) => {
         <div style={eyeLeft}>
           <div style={pupilLeft}></div>
         </div>
+        <div style={neck}>
+        </div>
         <div style={eyeRight}>
           <div style={pupilRight}></div>
         </div>
