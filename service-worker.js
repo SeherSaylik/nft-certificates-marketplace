@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/cartoons-nft-marketplace/precache-manifest.5266dcbb6ee52824c666083339664300.js"
+  "/nft-certificates-marketplace/precache-manifest.d40b9ce9823d63387dabd3250c9b8bc7.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/cartoons-nft-marketplace/index.html", {
+workbox.routing.registerNavigationRoute("/nft-certificates-marketplace/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
