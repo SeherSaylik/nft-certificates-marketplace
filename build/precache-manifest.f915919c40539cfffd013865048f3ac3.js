@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "3a5cbadedda42b645a2e",
-    "url": "/cartoons-nft-marketplace/static/css/main.8add5d81.chunk.css"
+    "revision": "decaae03ff2a6637f260",
+    "url": "/cartoons-nft-marketplace/static/css/main.e3b90a55.chunk.css"
   },
   {
-    "revision": "3a5cbadedda42b645a2e",
-    "url": "/cartoons-nft-marketplace/static/js/main.3a5cbade.chunk.js"
+    "revision": "decaae03ff2a6637f260",
+    "url": "/cartoons-nft-marketplace/static/js/main.decaae03.chunk.js"
   },
   {
     "revision": "78ae297d8128234e75c6",
@@ -20,11 +20,11 @@ self.__precacheManifest = [
     "url": "/cartoons-nft-marketplace/static/media/loading.26ef8bb4.gif"
   },
   {
-    "revision": "fbf33967fa244d21d61fb85f233fc331",
-    "url": "/cartoons-nft-marketplace/static/media/metamask.fbf33967.svg"
+    "revision": "f78293fe1a3f7ae70d50674fcdfbcf70",
+    "url": "/cartoons-nft-marketplace/static/media/metamask.f78293fe.svg"
   },
   {
-    "revision": "3508fbe11e085bf97e45e9305f29355d",
+    "revision": "973fc6e7b33f50c4b5cc50fba4245079",
     "url": "/cartoons-nft-marketplace/index.html"
   }
 ];
