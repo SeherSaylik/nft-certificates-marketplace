@@ -3,7 +3,6 @@
     "version": "0.1.0",
     "description": "Crypto Boys NFT Marketplace",
     "author": "sehersaylik",
-    "homepage": "https://sehersaylik.github.io/cartoons-nft-marketplace",
     "dependencies": {
         "@openzeppelin/contracts": "^3.4.1",
         "babel-polyfill": "6.26.0",
