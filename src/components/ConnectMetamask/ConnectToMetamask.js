@@ -1,5 +1,5 @@
 import React from "react";
-import metamaskIcon from "./metamask.svg";
+import metamaskIcon from "./metamask.png";
 import "../../bootstrap.min.css"
 
 
